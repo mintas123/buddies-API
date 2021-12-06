@@ -18,7 +18,15 @@ First iteration was finished by November 2020 and the development time was limit
 
 ## Installation
 
-***TODO***
+```bash
+./gradlew clean build
+```
+```bash
+./gradlew docker
+```
+```bash
+./gradlew dockerRun
+```
 ## Usage
 
 ***TODO***
