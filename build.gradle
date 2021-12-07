@@ -44,7 +44,7 @@ dockerRun {
 	image "${project.name}:${project.version}"
 	ports '8080:8080'
 	clean true
-	daemonize false
+	daemonize true
 }
 
 test {
