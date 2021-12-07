@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BuddiesApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BuddiesApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BuddiesApiApplication.class, args);
+    }
 
 }
