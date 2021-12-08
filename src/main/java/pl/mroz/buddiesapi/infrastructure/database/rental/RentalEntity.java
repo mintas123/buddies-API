@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.mroz.buddiesapi.domain.rental.RentalRepository;
 
 import javax.persistence.Basic;
 import javax.persistence.CollectionTable;
@@ -28,7 +29,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RentalEntity {
+public class RentalEntity implements RentalRepository.IRentalEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
