@@ -45,4 +45,7 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	// Swagger
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.12'
 }
