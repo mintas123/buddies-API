@@ -7,16 +7,25 @@
 
 -- Started on 2020-11-16 13:28:14
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
+SET
+statement_timeout = 0;
+SET
+lock_timeout = 0;
+SET
+idle_in_transaction_session_timeout = 0;
+SET
+client_encoding = 'UTF8';
+SET
+standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+SET
+check_function_bodies = false;
+SET
+xmloption = content;
+SET
+client_min_messages = warning;
+SET
+row_security = off;
 
 CREATE FUNCTION public.distance(lat double precision, lng double precision, db_lat double precision,
                                 db_lng double precision) RETURNS double precision
@@ -42,9 +51,11 @@ $$;
 
 ALTER FUNCTION public.distance(lat double precision, lng double precision, db_lat double precision, db_lng double precision) OWNER TO postgres;
 
-SET default_tablespace = '';
+SET
+default_tablespace = '';
 
-SET default_table_access_method = heap;
+SET
+default_table_access_method = heap;
 
 --
 -- TOC entry 202 (class 1259 OID 16402)
@@ -213,8 +224,7 @@ CREATE SEQUENCE public.hibernate_sequence
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE CACHE 1;
 
 
 ALTER TABLE public.hibernate_sequence
@@ -235,9 +245,9 @@ CREATE TABLE public.rental
     build_year    integer          NOT NULL,
     price         integer          NOT NULL,
     deposit       integer          NOT NULL,
-    price_m_sq    integer,
+    price_m_sq    double precision,
     rent_date     date,
-    size          integer          NOT NULL,
+    size          double precision NOT NULL,
     rooms         integer          NOT NULL,
     floor         integer          NOT NULL,
     location_lat  double precision NOT NULL,
@@ -415,8 +425,11 @@ ALTER TABLE ONLY public.account_tags
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
+GRANT
+ALL
+ON SCHEMA public TO postgres;
+GRANT ALL
+ON SCHEMA public TO PUBLIC;
 
 
 -- Completed on 2020-11-16 13:28:18

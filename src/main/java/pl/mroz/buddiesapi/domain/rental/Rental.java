@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @EqualsAndHashCode
 @ToString
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 public class Rental {
 
@@ -45,9 +45,9 @@ public class Rental {
 
     private int floor;
 
-    private int size;
+    private double size;
 
-    private int pricePerM;
+    private double pricePerM;
 
     private int buildYear;
 
