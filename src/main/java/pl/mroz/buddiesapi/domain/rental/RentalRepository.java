@@ -1,13 +1,23 @@
 package pl.mroz.buddiesapi.domain.rental;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 public interface RentalRepository {
 
-    int someMethod();
-    // getAll, save, update,delete and all other
+    List<Rental> getAllRentals();
+
+    Rental getRentalById(UUID rentalId);
+
+    List<String> getTopTags();
+
+    Rental save(Rental rental);
+
+    Rental update(Rental rental);
+
+    void delete(Rental rental);
 
     interface IRentalEntity {
 
@@ -33,9 +43,9 @@ public interface RentalRepository {
 
         int getFloor();
 
-        int getSize();
+        double getSize();
 
-        int getPricePerM();
+        double getPricePerM();
 
         int getBuildYear();
 
