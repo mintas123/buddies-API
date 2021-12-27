@@ -1,11 +1,11 @@
 buildscript {
 	ext{
-		springBootVersion = '2.6.1'
+		springBootVersion = '2.6.2'
 	}
 }
 plugins {
 	//SPRING
-	id 'org.springframework.boot' version '2.6.1'
+	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	//DOCKER
 	id 'com.palantir.docker' version '0.31.0'
