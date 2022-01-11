@@ -2,6 +2,6 @@
   "extends": [
     "config:base",
     ":rebaseStalePrs",
-    "schedule:weekly"
+    "schedule:monthly"
   ]
 }
