@@ -17,6 +17,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'java' ]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+        # Learn more about CodeQL language support at https://git.io/codeql-language-support
 
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +36,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@db5c4250043af20d97cb4298ed4311aac2915b13
+        uses: gradle/gradle-build-action@2.1.3
         with:
           arguments: build
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
