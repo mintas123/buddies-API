@@ -46,8 +46,8 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-websocket:$springBootVersion"
 	developmentOnly "org.springframework.boot:spring-boot-devtools:$springBootVersion"
 
-	runtimeOnly 'org.postgresql:postgresql:42.3.3'
-	implementation 'org.postgresql:postgresql:42.3.3'
+	runtimeOnly 'org.postgresql:postgresql:42.3.6'
+	implementation 'org.postgresql:postgresql:42.3.6'
 
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
