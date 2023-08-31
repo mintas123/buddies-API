@@ -50,7 +50,7 @@ public class RentalRepositoryImpl implements RentalRepository {
 
     @Override
     public Rental update(Rental rental) {
-        var rentalEntity = jpaRepository.getById(rental.getRentalId());
+        var rentalEntity = jpaRepository.getReferenceById(rental.getRentalId());
         rentalEntity.setTitle(rental.getTitle());
         rentalEntity.setNegotiable(rental.isNegotiable());
         rentalEntity.setDescription(rental.getDescription());
