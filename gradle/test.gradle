@@ -14,7 +14,7 @@ sourceSets {
 }
 
 dependencies {
-    implementation "org.codehaus.groovy:groovy:3.0.10"
+    implementation "org.codehaus.groovy:groovy:3.0.19"
     testImplementation platform("org.spockframework:spock-bom:2.0-groovy-3.0")
     testImplementation "org.spockframework:spock-core"
 }
