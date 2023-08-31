@@ -29,11 +29,11 @@ trait RandomBuilder {
 
     static LocalDate getRandomDateInRange(LocalDate a, LocalDate b) {
         def daysBetween = ChronoUnit.DAYS.between(a,b).intValue()
-        return a.plusDays(RandomBuilder.getRandomInt(0,daysBetween + 1))
+        return a.plusDays(getRandomInt(0,daysBetween + 1))
     }
 
     static LocalDate getRandomDate() {
-        return RandomBuilder.getRandomDateInRange(LocalDate.of(2010, Month.JANUARY,1), LocalDate.of(2040, Month.DECEMBER,31))
+        return getRandomDateInRange(LocalDate.of(2010, Month.JANUARY,1), LocalDate.of(2040, Month.DECEMBER,31))
 
     }
 
