@@ -1,3 +1,4 @@
+--TODO rethink database schema
 --
 -- PostgreSQL database dump
 --
