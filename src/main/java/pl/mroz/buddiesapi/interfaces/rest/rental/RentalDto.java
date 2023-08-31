@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import pl.mroz.buddiesapi.domain.rental.Rental;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
