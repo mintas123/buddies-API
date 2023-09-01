@@ -53,7 +53,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
 	// Swagger
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
 
 	// JavaFaker to generate realistic looking testing data
 	implementation 'com.github.javafaker:javafaker:1.0.2'
