@@ -1,0 +1,10 @@
+#Development only
+spring:
+  datasource:
+    password: compose-postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
