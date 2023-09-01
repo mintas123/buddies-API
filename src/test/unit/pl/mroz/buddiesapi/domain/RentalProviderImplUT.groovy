@@ -2,14 +2,14 @@ package pl.mroz.buddiesapi.domain
 
 import pl.mroz.buddiesapi.domain.generation.RandomBuilder
 import pl.mroz.buddiesapi.domain.rental.RentalRepository
-import pl.mroz.buddiesapi.domain.rental.RentalService
-import pl.mroz.buddiesapi.domain.rental.RentalServiceFactory
+import pl.mroz.buddiesapi.domain.rental.RentalProvider
+import pl.mroz.buddiesapi.domain.rental.RentalProviderFactory
 import pl.mroz.buddiesapi.infrastructure.database.RentalRepositoryInMemory
 import spock.lang.Specification
 
-class RentalServiceImplUT extends Specification implements RandomBuilder {
+class RentalProviderImplUT extends Specification implements RandomBuilder {
     RentalRepository repository = new RentalRepositoryInMemory()
-    RentalService service = new RentalServiceFactory().rentalService(repository)
+    RentalProvider service = new RentalProviderFactory().rentalService(repository)
 
 
     def 'createRental should persist new Rental'() {

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
-class RentalServiceImpl implements RentalService {
+class RentalProviderImpl implements RentalProvider {
 
     private final RentalRepository repository;
 

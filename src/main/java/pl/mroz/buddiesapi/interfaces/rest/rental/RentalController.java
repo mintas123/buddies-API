@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.mroz.buddiesapi.domain.rental.RentalService;
+import pl.mroz.buddiesapi.domain.rental.RentalProvider;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/rentals")
 public class RentalController {
 
-    private final RentalService service;
+    private final RentalProvider service;
 
     @Operation(summary = "Get list of all rentals", method = "GET")
     @ApiResponses(value = {
