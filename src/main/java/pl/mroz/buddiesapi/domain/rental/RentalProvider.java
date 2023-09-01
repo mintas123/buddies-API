@@ -7,6 +7,8 @@ public interface RentalProvider {
 
     List<Rental> getAllRentals();
 
+    List<Rental> getRentalsFromUser(UUID accountId);
+
     Rental getRental(UUID rentalId);
 
     List<String> getTopTags();

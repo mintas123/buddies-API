@@ -10,7 +10,7 @@ import pl.mroz.buddiesapi.domain.rental.RentalProviderFactory;
 public class RentalConfig {
 
     @Bean
-    RentalProvider rentalService(RentalRepository repository) {
-        return new RentalProviderFactory().rentalService(repository);
+    RentalProvider rentalProvider(RentalRepository repository) {
+        return RentalProviderFactory.rentalProvider(repository);
     }
 }

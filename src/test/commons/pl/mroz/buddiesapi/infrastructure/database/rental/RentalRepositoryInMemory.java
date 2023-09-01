@@ -1,4 +1,4 @@
-package pl.mroz.buddiesapi.infrastructure.database;
+package pl.mroz.buddiesapi.infrastructure.database.rental;
 
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;

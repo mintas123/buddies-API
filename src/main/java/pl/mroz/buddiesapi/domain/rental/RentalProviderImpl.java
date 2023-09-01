@@ -2,6 +2,7 @@ package pl.mroz.buddiesapi.domain.rental;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,6 +16,11 @@ class RentalProviderImpl implements RentalProvider {
     @Override
     public List<Rental> getAllRentals() {
         return repository.getAllRentals();
+    }
+
+    @Override
+    public List<Rental> getRentalsFromUser(UUID accountId) {
+        throw new NotImplementedException();
     }
 
     @Override

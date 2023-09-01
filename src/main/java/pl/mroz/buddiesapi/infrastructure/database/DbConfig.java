@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pl.mroz.buddiesapi.infrastructure.database.account.AccountRepositoryImpl;
 import pl.mroz.buddiesapi.infrastructure.database.rental.RentalRepositoryImpl;
 
 @Configuration
@@ -18,7 +19,10 @@ import pl.mroz.buddiesapi.infrastructure.database.rental.RentalRepositoryImpl;
     TransactionAutoConfiguration.class,
     ValidationAutoConfiguration.class
 })
-@EnableJpaRepositories(basePackageClasses = RentalRepositoryImpl.class, considerNestedRepositories = true)
+@EnableJpaRepositories(basePackageClasses = {
+    RentalRepositoryImpl.class,
+    AccountRepositoryImpl.class
+}, considerNestedRepositories = true)
 @EntityScan
 @ComponentScan
 public class DbConfig {
