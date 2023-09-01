@@ -10,7 +10,7 @@ plugins {
 	//DOCKER
 	id 'com.palantir.docker' version '0.35.0'
 	id 'com.palantir.docker-run' version '0.32.0'
-	id 'com.palantir.docker-compose' version '0.32.0'
+	id 'com.palantir.docker-compose' version '0.35.0'
 	//SWAGGER
 	id "com.github.johnrengelman.processes" version "0.5.0"
 	id "org.springdoc.openapi-gradle-plugin" version "1.3.3"
