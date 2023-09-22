@@ -18,7 +18,7 @@ import pl.mroz.buddiesapi.domain.account.AccountRepository;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name = "ACCOUNT")
 @Getter
 @Setter
 @NoArgsConstructor

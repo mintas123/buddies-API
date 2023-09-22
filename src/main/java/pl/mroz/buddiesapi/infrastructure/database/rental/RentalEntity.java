@@ -18,7 +18,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name = "RENTAL")
 @Getter
 @Setter
 @Builder

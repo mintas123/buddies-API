@@ -5,12 +5,12 @@ import pl.mroz.buddiesapi.infrastructure.database.account.AccountRepositoryInMem
 import spock.lang.Specification
 import spock.lang.Subject
 
-class AccountProviderImplUT extends Specification {
+class AccountDomainServiceImplUT extends Specification {
 
     def repository = new AccountRepositoryInMemory()
 
     @Subject
-    def provider = AccountProviderFactory.accountProvider(repository)
+    def provider = AccountDomainServiceFactory.accountDomainService(repository)
 
     def 'should return list of all accounts'() {
         given:

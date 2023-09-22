@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
-public class AccountProviderImpl implements AccountProvider {
+public class AccountDomainServiceImpl implements AccountDomainService {
 
     private final AccountRepository repository;
 

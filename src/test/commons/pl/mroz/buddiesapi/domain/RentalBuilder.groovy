@@ -4,6 +4,7 @@ import com.github.javafaker.Faker
 import pl.mroz.buddiesapi.domain.generation.RandomBuilder
 import pl.mroz.buddiesapi.domain.rental.Rental
 
+import java.time.Instant
 import java.time.LocalDate
 import java.util.stream.IntStream
 
@@ -26,14 +27,14 @@ class RentalBuilder implements RandomBuilder {
     private double size = getRandomInt(10, 200)
     private double pricePerM = (price / size)
     private int buildYear = getRandomInt(1900, LocalDate.now().getYear() + 5)
-    private LocalDate rentDate = randomDate
+    private Instant rentDate = randomDate
     private Set<String> featureTags = faker.lorem().sentence(getRandomInt(2, 10)).split(" ").toList().toSet()
     private Set<String> photoUrls
 
 
     static Set<String> buildPhotoUrls() {
         Set<String> set = new HashSet<>()
-        IntStream.range(0,10).forEach(i -> set.add(faker.internet().url()))
+        IntStream.range(0, 10).forEach(i -> set.add(faker.internet().url()))
 //        doNTimes(10, () -> set.add(faker.internet().url()))
         return set
     }
@@ -61,7 +62,7 @@ class RentalBuilder implements RandomBuilder {
 
     RentalBuilder withPhotoUrls(int amount) {
         Set<String> set = new HashSet<>()
-        IntStream.range(0,amount).forEach(i -> set.add(faker.internet().url()))
+        IntStream.range(0, amount).forEach(i -> set.add(faker.internet().url()))
 
 //        doNTimes(amount, () -> set.add(faker.internet().url()))
         this.photoUrls = set
@@ -69,10 +70,7 @@ class RentalBuilder implements RandomBuilder {
     }
 
     Rental build() {
-        new Rental(rentalId, title, isNegotiable, description, locationStr, locationLng, locationLat,
-                price, deposit, rooms, floor, size, pricePerM, buildYear, rentDate,
-                featureTags, buildPhotoUrls())
+        new Rental(rentalId, title, isNegotiable, description, locationStr, locationLng, locationLat, price,
+                deposit, rooms, floor, size, buildYear, rentDate)
     }
-
-    //new RentalBuilder.withX.build()
 }

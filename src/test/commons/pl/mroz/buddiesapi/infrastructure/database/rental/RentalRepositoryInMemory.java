@@ -2,7 +2,6 @@ package pl.mroz.buddiesapi.infrastructure.database.rental;
 
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
-import pl.mroz.buddiesapi.infrastructure.database.rental.RentalEntity;
 
 import java.util.HashSet;
 import java.util.List;
@@ -60,8 +59,8 @@ public class RentalRepositoryInMemory implements RentalRepository {
                 .size(rental.getSize())
                 .buildYear(rental.getBuildYear())
                 .rentDate(rental.getRentDate())
-                .featureTags(rental.getFeatureTags())
-                .photoUrls(rental.getPhotoUrls())
+//                .featureTags(rental.getFeatureTags())
+//                .photoUrls(rental.getPhotoUrls())
                 .build();
 
         rentals.remove(rentalById);

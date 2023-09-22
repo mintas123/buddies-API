@@ -3,7 +3,7 @@ package pl.mroz.buddiesapi.domain.account;
 import java.util.List;
 import java.util.UUID;
 
-public interface AccountProvider {
+public interface AccountDomainService {
 
     List<Account> getAllAccounts();
 

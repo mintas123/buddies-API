@@ -9,7 +9,6 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import java.time.Instant;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -47,18 +46,18 @@ public class Rental {
 
     private double size;
 
-    private double pricePerM;
+//    private double pricePerM;
 
     private int buildYear;
 
     @NonNull
     private Instant rentDate;
 
-    @NonNull
-    private Set<String> featureTags;
-
-    @NonNull
-    private Set<String> photoUrls;
+//    @NonNull
+//    private Set<String> featureTags;
+//
+//    @NonNull
+//    private Set<String> photoUrls;
 
     public static Rental fromDb(RentalRepository.IRentalEntity entity) {
         return Rental.builder()

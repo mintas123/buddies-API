@@ -1,15 +1,14 @@
 package pl.mroz.buddiesapi.interfaces.rest.rental;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import pl.mroz.buddiesapi.domain.rental.Rental;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -58,8 +57,8 @@ public class RentalDto {
     @Schema(example = "48.45", name = "Apartment size", required = true)
     private double size;
 
-    @Schema(example = "110.14", name = "Price/size", required = true)
-    private double pricePerM;
+//    @Schema(example = "110.14", name = "Price/size", required = true)
+//    private double pricePerM;
 
     @Schema(example = "2009", name = "How old the building is", required = true)
     private int buildYear;
@@ -68,13 +67,13 @@ public class RentalDto {
     @NonNull
     private LocalDate rentDate;
 
-    @Schema(example = "['AC','Garage']", name = "Additional fatures of the rental property", required = true)
-    @NonNull
-    private Set<String> featureTags;
-
-    @Schema(example = "[https://pjatk-s16604-diploma-media.s3.eu-central-1.amazonaws.com/logotype.png]", name = "Set of urls with the uploaded pictures", required = true)
-    @NonNull
-    private Set<String> photoUrls;
+//    @Schema(example = "['AC','Garage']", name = "Additional fatures of the rental property", required = true)
+//    @NonNull
+//    private Set<String> featureTags;
+//
+//    @Schema(example = "[https://pjatk-s16604-diploma-media.s3.eu-central-1.amazonaws.com/logotype.png]", name = "Set of urls with the uploaded pictures", required = true)
+//    @NonNull
+//    private Set<String> photoUrls;
 
     static RentalDto from(Rental domain) {
         return RentalDto.builder()
@@ -90,11 +89,11 @@ public class RentalDto {
                 .rooms(domain.getRooms())
                 .floor(domain.getFloor())
                 .size(domain.getSize())
-                .pricePerM(domain.getPricePerM())
+//                .pricePerM(domain.getPricePerM())
                 .buildYear(domain.getBuildYear())
-                .rentDate(domain.getRentDate())
-                .featureTags(domain.getFeatureTags())
-                .photoUrls(domain.getPhotoUrls())
+                .rentDate(LocalDate.from(domain.getRentDate()))
+//                .featureTags(domain.getFeatureTags())
+//                .photoUrls(domain.getPhotoUrls())
                 .build();
     }
 }

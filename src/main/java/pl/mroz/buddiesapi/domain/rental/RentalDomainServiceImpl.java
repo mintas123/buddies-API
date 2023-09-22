@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
-class RentalProviderImpl implements RentalProvider {
+class RentalDomainServiceImpl implements RentalDomainService {
 
     private final RentalRepository repository;
 

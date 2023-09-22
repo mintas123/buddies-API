@@ -3,7 +3,7 @@ package pl.mroz.buddiesapi.domain.rental;
 import java.util.List;
 import java.util.UUID;
 
-public interface RentalProvider {
+public interface RentalDomainService {
 
     List<Rental> getAllRentals();
 
