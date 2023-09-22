@@ -2,14 +2,12 @@ package pl.mroz.buddiesapi.infrastructure.database.account;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import pl.mroz.buddiesapi.domain.account.Account;
 import pl.mroz.buddiesapi.domain.account.AccountRepository;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
 public class AccountRepositoryImpl implements AccountRepository {
 

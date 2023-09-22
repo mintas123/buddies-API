@@ -1,6 +1,11 @@
 package pl.mroz.buddiesapi.infrastructure.database.rental;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,18 +13,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
 
-import java.time.LocalDate;
-import java.util.Set;
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -62,6 +57,7 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     private double locationLat;
 
     //  -----details:-----
+    //TODO maybe separate entity?
 
     @Basic
     private int price;
@@ -78,23 +74,23 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     @Basic
     private double size;
 
-    @Basic
-    @Column(name = "price_m_sq")
-    private double pricePerM;
+//    @Basic
+//    @Column(name = "price_m_sq")
+//    private double pricePerM;
 
     @Basic
     private int buildYear;
 
     @Basic
-    private LocalDate rentDate;
+    private Instant rentDate;
 
-    @ElementCollection
-    @CollectionTable(name = "feature_tags", joinColumns = @JoinColumn(name = "rental_id"))
-    private Set<String> featureTags;
-
-    @ElementCollection
-    @CollectionTable(name = "rental_pic_urls", joinColumns = @JoinColumn(name = "rental_id"))
-    private Set<String> photoUrls;
+//    @ElementCollection
+//    @CollectionTable(name = "feature_tags", joinColumns = @JoinColumn(name = "rental_id"))
+//    private Set<String> featureTags;
+//
+//    @ElementCollection
+//    @CollectionTable(name = "rental_pic_urls", joinColumns = @JoinColumn(name = "rental_id"))
+//    private Set<String> photoUrls;
 
     // -----------------------
 
@@ -118,11 +114,11 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
                 .rooms(rental.getRooms())
                 .floor(rental.getFloor())
                 .size(rental.getSize())
-                .pricePerM(rental.getPricePerM())
+//                .pricePerM(rental.getPricePerM())
                 .buildYear(rental.getBuildYear())
                 .rentDate(rental.getRentDate())
-                .featureTags(rental.getFeatureTags())
-                .photoUrls(rental.getPhotoUrls())
+//                .featureTags(rental.getFeatureTags())
+//                .photoUrls(rental.getPhotoUrls())
                 .build();
 
     }

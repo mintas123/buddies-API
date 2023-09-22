@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.Set;
 import java.util.UUID;
 
@@ -52,7 +52,7 @@ public class Rental {
     private int buildYear;
 
     @NonNull
-    private LocalDate rentDate;
+    private Instant rentDate;
 
     @NonNull
     private Set<String> featureTags;
@@ -74,11 +74,11 @@ public class Rental {
                 .rooms(entity.getRooms())
                 .floor(entity.getFloor())
                 .size(entity.getSize())
-                .pricePerM(entity.getPricePerM())
+//                .pricePerM(entity.getPricePerM())
                 .buildYear(entity.getBuildYear())
                 .rentDate(entity.getRentDate())
-                .featureTags(entity.getFeatureTags())
-                .photoUrls(entity.getPhotoUrls())
+//                .featureTags(entity.getFeatureTags())
+//                .photoUrls(entity.getPhotoUrls())
                 .build();
     }
 

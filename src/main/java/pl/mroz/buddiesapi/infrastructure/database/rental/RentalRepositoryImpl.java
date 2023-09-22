@@ -1,16 +1,14 @@
 package pl.mroz.buddiesapi.infrastructure.database.rental;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Component;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
 public class RentalRepositoryImpl implements RentalRepository {
 
@@ -35,7 +33,8 @@ public class RentalRepositoryImpl implements RentalRepository {
 
     @Override
     public List<String> getTopTags() {
-        return jpaRepository.getTopTags();
+        throw new NotImplementedException();
+//        return jpaRepository.getTopTags();
     }
 
     @Override
@@ -64,8 +63,8 @@ public class RentalRepositoryImpl implements RentalRepository {
         rentalEntity.setSize(rental.getSize());
         rentalEntity.setBuildYear(rental.getBuildYear());
         rentalEntity.setRentDate(rental.getRentDate());
-        rentalEntity.setFeatureTags(rental.getFeatureTags());
-        rentalEntity.setPhotoUrls(rental.getPhotoUrls());
+//        rentalEntity.setFeatureTags(rental.getFeatureTags());
+//        rentalEntity.setPhotoUrls(rental.getPhotoUrls());
 
         jpaRepository.save(rentalEntity);
 
@@ -80,9 +79,9 @@ public class RentalRepositoryImpl implements RentalRepository {
 
     interface RentalJpaRepository extends JpaRepository<RentalEntity, UUID> {
 
-        @Query(value = "SELECT feature_tags FROM public.feature_tags Group By feature_tags Order By COUNT(*) DESC LIMIT 5",
-                nativeQuery = true)
-        List<String> getTopTags();
+//        @Query(value = "SELECT feature_tags FROM public.feature_tags Group By feature_tags Order By COUNT(*) DESC LIMIT 5",
+//                nativeQuery = true)
+//        List<String> getTopTags();
 
     }
 }

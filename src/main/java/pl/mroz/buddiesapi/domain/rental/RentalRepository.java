@@ -1,8 +1,7 @@
 package pl.mroz.buddiesapi.domain.rental;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 public interface RentalRepository {
@@ -45,15 +44,15 @@ public interface RentalRepository {
 
         double getSize();
 
-        double getPricePerM();
+//        double getPricePerM();
 
         int getBuildYear();
 
-        LocalDate getRentDate();
+        Instant getRentDate();
 
-        Set<String> getFeatureTags();
+//        Set<String> getFeatureTags();
 
-        Set<String> getPhotoUrls();
+//        Set<String> getPhotoUrls();
 
     }
 }
