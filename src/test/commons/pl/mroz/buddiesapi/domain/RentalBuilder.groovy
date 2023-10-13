@@ -1,6 +1,7 @@
 package pl.mroz.buddiesapi.domain
 
 import com.github.javafaker.Faker
+import pl.mroz.buddiesapi.domain.common.Location
 import pl.mroz.buddiesapi.domain.generation.RandomBuilder
 import pl.mroz.buddiesapi.domain.rental.Rental
 
@@ -70,7 +71,7 @@ class RentalBuilder implements RandomBuilder {
     }
 
     Rental build() {
-        new Rental(rentalId, title, isNegotiable, description, locationStr, locationLng, locationLat, price,
+        new Rental(rentalId, title, isNegotiable, description, new Location(randomUUID, locationStr, locationLng, locationLat), price,
                 deposit, rooms, floor, size, buildYear, rentDate)
     }
 }

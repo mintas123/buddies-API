@@ -15,8 +15,8 @@ class AccountDomainServiceImplUT extends Specification {
     def 'should return list of all accounts'() {
         given:
             def listOfEntities = [
-                    new AccountEntity(UUID.randomUUID(), 'test@email.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Deer'),
-                    new AccountEntity(UUID.randomUUID(), 'mail@gmail.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Kowalski'),
+                    new AccountEntity(UUID.randomUUID(), 'test@email.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Deer', null),
+                    new AccountEntity(UUID.randomUUID(), 'mail@gmail.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Kowalski', null),
             ]
             repository.withAccounts(listOfEntities)
         when:
