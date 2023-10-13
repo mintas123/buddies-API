@@ -1,5 +1,7 @@
 package pl.mroz.buddiesapi.domain.rental;
 
+import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
+
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -28,11 +30,7 @@ public interface RentalRepository {
 
         String getDescription();
 
-        String getLocationStr();
-
-        double getLocationLng();
-
-        double getLocationLat();
+        LocationEntity getLocationEntity();
 
         int getPrice();
 

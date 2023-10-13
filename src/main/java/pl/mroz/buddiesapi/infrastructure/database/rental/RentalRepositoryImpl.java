@@ -5,6 +5,7 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
+import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -53,9 +54,7 @@ public class RentalRepositoryImpl implements RentalRepository {
         rentalEntity.setTitle(rental.getTitle());
         rentalEntity.setNegotiable(rental.isNegotiable());
         rentalEntity.setDescription(rental.getDescription());
-        rentalEntity.setLocationStr(rental.getLocationStr());
-        rentalEntity.setLocationLat(rental.getLocationLat());
-        rentalEntity.setLocationLng(rental.getLocationLng());
+        rentalEntity.setLocationEntity(LocationEntity.fromDomain(rental.getLocation()));
         rentalEntity.setPrice(rental.getPrice());
         rentalEntity.setDeposit(rental.getDeposit());
         rentalEntity.setRooms(rental.getRooms());

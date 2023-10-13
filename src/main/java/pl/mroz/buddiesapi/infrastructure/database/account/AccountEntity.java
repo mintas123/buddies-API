@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.mroz.buddiesapi.domain.account.AccountRepository;
+import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.util.UUID;
 
@@ -45,4 +48,8 @@ public class AccountEntity implements AccountRepository.IAccountEntity {
     @Basic
     @NotBlank
     private String lastName;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private LocationEntity location;
 }

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
+import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -47,14 +50,9 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     //    @Size(max = 3000)
     private String description;
 
-    @Basic
-    private String locationStr;
-
-    @Basic
-    private double locationLng;
-
-    @Basic
-    private double locationLat;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private LocationEntity locationEntity;
 
     //  -----details:-----
     //TODO maybe separate entity?
@@ -106,9 +104,7 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
                 .title(rental.getTitle())
                 .isNegotiable(rental.isNegotiable())
                 .description(rental.getDescription())
-                .locationStr(rental.getLocationStr())
-                .locationLat(rental.getLocationLat())
-                .locationLng(rental.getLocationLng())
+                .locationEntity(LocationEntity.fromDomain(rental.getLocation()))
                 .price(rental.getPrice())
                 .deposit(rental.getDeposit())
                 .rooms(rental.getRooms())

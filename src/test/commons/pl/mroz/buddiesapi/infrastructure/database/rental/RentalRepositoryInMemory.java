@@ -2,6 +2,7 @@ package pl.mroz.buddiesapi.infrastructure.database.rental;
 
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
+import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.util.HashSet;
 import java.util.List;
@@ -49,9 +50,7 @@ public class RentalRepositoryInMemory implements RentalRepository {
                 .title(rental.getTitle())
                 .isNegotiable(rental.isNegotiable())
                 .description(rental.getDescription())
-                .locationStr(rental.getLocationStr())
-                .locationLat(rental.getLocationLat())
-                .locationLng(rental.getLocationLng())
+                .locationEntity(LocationEntity.fromDomain(rental.getLocation()))
                 .price(rental.getPrice())
                 .deposit(rental.getDeposit())
                 .rooms(rental.getRooms())

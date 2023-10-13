@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
+import pl.mroz.buddiesapi.domain.common.Location;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -30,11 +31,7 @@ public class Rental {
     private String description;
 
     @NonNull
-    private String locationStr;
-
-    private double locationLng;
-
-    private double locationLat;
+    private Location location;
 
     private int price;
 
@@ -65,9 +62,7 @@ public class Rental {
                 .title(entity.getTitle())
                 .isNegotiable(entity.isNegotiable())
                 .description(entity.getDescription())
-                .locationStr(entity.getLocationStr())
-                .locationLat(entity.getLocationLat())
-                .locationLng(entity.getLocationLng())
+                .location(Location.fromDb(entity.getLocationEntity()))
                 .price(entity.getPrice())
                 .deposit(entity.getDeposit())
                 .rooms(entity.getRooms())
