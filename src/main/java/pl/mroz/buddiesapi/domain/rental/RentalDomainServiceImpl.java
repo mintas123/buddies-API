@@ -2,7 +2,10 @@ package pl.mroz.buddiesapi.domain.rental;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import pl.mroz.buddiesapi.infrastructure.database.rental.RentalEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,8 +22,15 @@ class RentalDomainServiceImpl implements RentalDomainService {
     }
 
     @Override
+    public Page<Rental> getByCriteria(RentalRepository.IRentalCriteria rentalCriteria, Pageable pageable) {
+        Specification<RentalEntity> spec = Specification.where(null);
+        //todo https://medium.com/@bubu.tripathy/dynamic-query-with-specification-interface-in-spring-data-jpa-ae8764e32162
+        return repository.getByCriteria(spec, pageable);
+    }
+
+    @Override
     public List<Rental> getRentalsFromUser(UUID accountId) {
-        throw new NotImplementedException();
+        return repository.getAllRentalsFromUser(accountId);
     }
 
     @Override

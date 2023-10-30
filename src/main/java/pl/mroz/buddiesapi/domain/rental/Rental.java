@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
+import pl.mroz.buddiesapi.domain.account.Account;
 import pl.mroz.buddiesapi.domain.common.Location;
 
 import java.time.Instant;
@@ -20,16 +21,14 @@ import java.util.UUID;
 public class Rental {
 
     @NonNull
-    private UUID rentalId;
-
-    @NonNull
     private final String title;
-
+    @NonNull
+    private UUID rentalId;
+    @NonNull
+    private Account author;
     private boolean isNegotiable;
-
     @NonNull
     private String description;
-
     @NonNull
     private Location location;
 
@@ -59,6 +58,7 @@ public class Rental {
     public static Rental fromDb(RentalRepository.IRentalEntity entity) {
         return Rental.builder()
                 .rentalId(entity.getRentalId())
+                .author(Account.fromDb(entity.getAuthorEntity()))
                 .title(entity.getTitle())
                 .isNegotiable(entity.isNegotiable())
                 .description(entity.getDescription())

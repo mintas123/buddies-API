@@ -1,6 +1,7 @@
 package pl.mroz.buddiesapi.infrastructure.database.rental;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
+import pl.mroz.buddiesapi.infrastructure.database.account.AccountEntity;
 import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.time.Instant;
@@ -33,9 +35,9 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID rentalId;
 
-    //    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
-    //    @JoinColumn(name = "creator_id")
-    //    private Account creator;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
+    @JoinColumn(name = "author_id")
+    private AccountEntity authorEntity;
 
     @Basic
     //    @NotBlank
@@ -55,7 +57,6 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     private LocationEntity locationEntity;
 
     //  -----details:-----
-    //TODO maybe separate entity?
 
     @Basic
     private int price;
@@ -100,7 +101,7 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
 
     static RentalEntity fromDomain(Rental rental) {
         return RentalEntity.builder()
-                //.creator(accountService.getById(rental.getAccountId()))
+                .authorEntity(AccountEntity.fromDomain(rental.getAuthor()))
                 .title(rental.getTitle())
                 .isNegotiable(rental.isNegotiable())
                 .description(rental.getDescription())

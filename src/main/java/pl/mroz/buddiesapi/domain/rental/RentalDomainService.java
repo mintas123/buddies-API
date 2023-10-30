@@ -1,11 +1,16 @@
 package pl.mroz.buddiesapi.domain.rental;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.UUID;
 
 public interface RentalDomainService {
 
     List<Rental> getAllRentals();
+
+    Page<Rental> getByCriteria(RentalRepository.IRentalCriteria rentalCriteria, Pageable pageable);
 
     List<Rental> getRentalsFromUser(UUID accountId);
 

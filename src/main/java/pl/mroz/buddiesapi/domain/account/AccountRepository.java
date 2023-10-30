@@ -1,5 +1,7 @@
 package pl.mroz.buddiesapi.domain.account;
 
+import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -17,5 +19,8 @@ public interface AccountRepository {
         String getName();
 
         String getLastName();
+
+        LocationEntity getLocationEntity();
+
     }
 }

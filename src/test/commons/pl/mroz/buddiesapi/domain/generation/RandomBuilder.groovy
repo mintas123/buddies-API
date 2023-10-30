@@ -1,6 +1,8 @@
 package pl.mroz.buddiesapi.domain.generation
 
+import com.github.javafaker.Faker
 import org.apache.commons.lang3.RandomUtils
+import pl.mroz.buddiesapi.domain.common.Location
 
 import java.time.Duration
 import java.time.Instant
@@ -12,6 +14,12 @@ import java.util.function.IntConsumer
 import java.util.stream.IntStream
 
 trait RandomBuilder {
+
+    static def faker = new Faker(Locale.ENGLISH)
+
+    static Faker getFaker() {
+        return faker
+    }
 
     static UUID getRandomUUID() {
         return UUID.randomUUID()
@@ -40,6 +48,10 @@ trait RandomBuilder {
                 Instant.from(LocalDate.of(2010, Month.JANUARY, 1).atStartOfDay().atOffset(ZoneOffset.UTC)),
                 Instant.from(LocalDate.of(2040, Month.DECEMBER, 31).atStartOfDay().atOffset(ZoneOffset.UTC))
         )
+    }
+
+    static Location getRandomLocation() {
+        return new Location(randomUUID, faker.address().fullAddress(), faker.random().nextDouble() * 360, faker.random().nextDouble() * 360)
     }
 
     static <T extends Enum> T getRandomEnum(Class<T> enumClass) {

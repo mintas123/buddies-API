@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.mroz.buddiesapi.domain.common.Location;
 
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class Account {
     private String hashedPassword;
     private String name;
     private String lastName;
+    private Location location;
     // todo rethink domain scopes and db schema
 
     public static Account fromDb(AccountRepository.IAccountEntity entity) {
@@ -29,6 +31,7 @@ public class Account {
                 .hashedPassword(entity.getHashedPassword())
                 .name(entity.getName())
                 .lastName(entity.getLastName())
+                .location(Location.fromDb(entity.getLocationEntity()))
                 .build();
     }
 }

@@ -63,15 +63,16 @@ class RentalBuilder implements RandomBuilder {
 
     RentalBuilder withPhotoUrls(int amount) {
         Set<String> set = new HashSet<>()
-        IntStream.range(0, amount).forEach(i -> set.add(faker.internet().url()))
+        (0..amount).forEach(i -> set.add(faker.internet().url()))
 
-//        doNTimes(amount, () -> set.add(faker.internet().url()))
         this.photoUrls = set
         return this
     }
 
     Rental build() {
-        new Rental(rentalId, title, isNegotiable, description, new Location(randomUUID, locationStr, locationLng, locationLat), price,
+        def acc = new AccountBuilder().build()
+        def loc = new Location(randomUUID, locationStr, locationLng, locationLat)
+        return new Rental(title, rentalId, acc, isNegotiable, description, loc, price,
                 deposit, rooms, floor, size, buildYear, rentDate)
     }
 }

@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.mroz.buddiesapi.domain.account.Account;
 import pl.mroz.buddiesapi.domain.account.AccountRepository;
 import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
@@ -51,5 +52,17 @@ public class AccountEntity implements AccountRepository.IAccountEntity {
 
     @ManyToOne
     @JoinColumn(name = "location_id")
-    private LocationEntity location;
+    private LocationEntity locationEntity;
+
+    public static AccountEntity fromDomain(Account account) {
+        return AccountEntity.builder()
+                .accountId(account.getAccountId())
+                .email(account.getEmail())
+                .hashedPassword(account.getHashedPassword())
+                .name(account.getName())
+                .lastName(account.getLastName())
+                .locationEntity(LocationEntity.fromDomain(account.getLocation()))
+                .build();
+
+    }
 }
