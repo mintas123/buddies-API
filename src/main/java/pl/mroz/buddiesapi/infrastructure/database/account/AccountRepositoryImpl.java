@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.mroz.buddiesapi.domain.account.Account;
 import pl.mroz.buddiesapi.domain.account.AccountRepository;
-import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,8 +12,6 @@ import java.util.UUID;
 public class AccountRepositoryImpl implements AccountRepository {
 
     private final AccountJpaRepository jpaRepository;
-
-    private final LocationJpaRepository locationJpaRepository;
 
     @Override
     public List<Account> findAll() {
@@ -37,9 +34,5 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     interface AccountJpaRepository extends JpaRepository<AccountEntity, UUID> {
-    }
-
-    interface LocationJpaRepository extends JpaRepository<LocationEntity, UUID> {
-
     }
 }
