@@ -1,11 +1,9 @@
 package pl.mroz.buddiesapi.domain.common;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.ToString;
 import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
@@ -15,9 +13,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
-@Builder(access = AccessLevel.PRIVATE)
+@Builder
 public class Location {
-    @NonNull
     private UUID locationId;
 
     private String readableText;

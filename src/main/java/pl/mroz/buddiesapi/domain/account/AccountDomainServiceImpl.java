@@ -24,8 +24,8 @@ public class AccountDomainServiceImpl implements AccountDomainService {
     }
 
     @Override
-    public void createAccount(Account account) {
-        throw new NotImplementedException();
+    public Account createAccount(Account account) {
+        return repository.save(account);
     }
 
     @Override

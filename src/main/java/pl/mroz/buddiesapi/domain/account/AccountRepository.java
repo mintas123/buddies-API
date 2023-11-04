@@ -9,6 +9,8 @@ public interface AccountRepository {
 
     List<Account> findAll();
 
+    Account save(Account account);
+
     interface IAccountEntity {
         UUID getAccountId();
 

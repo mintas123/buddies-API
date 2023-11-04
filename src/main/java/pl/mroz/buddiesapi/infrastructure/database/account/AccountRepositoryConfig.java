@@ -8,7 +8,8 @@ import pl.mroz.buddiesapi.domain.account.AccountRepository;
 public class AccountRepositoryConfig {
 
     @Bean
-    AccountRepository accountRepository(AccountRepositoryImpl.AccountJpaRepository jpaRepository) {
-        return new AccountRepositoryImpl(jpaRepository);
+    AccountRepository accountRepository(AccountRepositoryImpl.AccountJpaRepository jpaRepository,
+                                        AccountRepositoryImpl.LocationJpaRepository locationJpaRepository) {
+        return new AccountRepositoryImpl(jpaRepository, locationJpaRepository);
     }
 }

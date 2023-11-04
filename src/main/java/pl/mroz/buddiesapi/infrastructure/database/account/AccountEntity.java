@@ -1,6 +1,7 @@
 package pl.mroz.buddiesapi.infrastructure.database.account;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -50,7 +51,7 @@ public class AccountEntity implements AccountRepository.IAccountEntity {
     @NotBlank
     private String lastName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     private LocationEntity locationEntity;
 

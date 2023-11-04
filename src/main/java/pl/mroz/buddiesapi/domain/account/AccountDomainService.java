@@ -9,7 +9,7 @@ public interface AccountDomainService {
 
     Account getAccount(UUID accountId);
 
-    void createAccount(Account account);
+    Account createAccount(Account account);
 
     void updateAccount(Account account);
 
