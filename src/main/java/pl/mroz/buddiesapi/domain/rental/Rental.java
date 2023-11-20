@@ -1,6 +1,5 @@
 package pl.mroz.buddiesapi.domain.rental;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -17,14 +16,12 @@ import java.util.UUID;
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
-@Builder(access = AccessLevel.PRIVATE)
+@Builder
 public class Rental {
 
     @NonNull
     private final String title;
-    @NonNull
     private UUID rentalId;
-    @NonNull
     private Account author;
     private boolean isNegotiable;
     @NonNull

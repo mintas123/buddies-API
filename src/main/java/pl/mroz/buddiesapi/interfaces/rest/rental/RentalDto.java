@@ -6,9 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
+import org.springframework.format.annotation.DateTimeFormat;
+import pl.mroz.buddiesapi.domain.account.Account;
+import pl.mroz.buddiesapi.domain.common.Location;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.UUID;
 
 @Getter
@@ -16,9 +19,11 @@ import java.util.UUID;
 @Builder
 public class RentalDto {
 
-    @Schema(example = "ff291c13-bd30-4950-a887-f0ab54c9eaf8", name = "Rental identification", required = true)
-    @NonNull
+    @Schema(example = "ff291c13-bd30-4950-a887-f0ab54c9eaf8", name = "Rental identification")
     private UUID rentalId;
+
+    @Schema(example = "ff291c13-bd30-4950-a887-f0ab54c9eaf8", name = "Author identification")
+    private UUID authorId;
 
     @Schema(example = "2 pokoje Warszawa Mokotów (GARAŻ)", name = "Title", required = true)
     @NonNull
@@ -63,9 +68,10 @@ public class RentalDto {
     @Schema(example = "2009", name = "How old the building is", required = true)
     private int buildYear;
 
-    @Schema(example = "2021-12-10", name = "Date when it will be available from", required = true)
+    @Schema(example = "2023-10-31T00:00:00.000-05:00", name = "Date when it will be available from", required = true)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @NonNull
-    private LocalDate rentDate;
+    private Instant rentDate;
 
 //    @Schema(example = "['AC','Garage']", name = "Additional fatures of the rental property", required = true)
 //    @NonNull
@@ -78,6 +84,7 @@ public class RentalDto {
     static RentalDto from(Rental domain) {
         return RentalDto.builder()
                 .rentalId(domain.getRentalId())
+                .authorId(domain.getAuthor().getAccountId())
                 .title(domain.getTitle())
                 .isNegotiable(domain.isNegotiable())
                 .description(domain.getDescription())
@@ -91,9 +98,33 @@ public class RentalDto {
                 .size(domain.getSize())
 //                .pricePerM(domain.getPricePerM())
                 .buildYear(domain.getBuildYear())
-                .rentDate(LocalDate.from(domain.getRentDate()))
+                .rentDate(domain.getRentDate())
 //                .featureTags(domain.getFeatureTags())
 //                .photoUrls(domain.getPhotoUrls())
+                .build();
+    }
+
+    static Rental toDomain(RentalDto dto, Account account) {
+        var location = Location.builder()
+                .readableText(dto.getLocationStr())
+                .longitude(dto.getLocationLng())
+                .latitude(dto.getLocationLat())
+                .build();
+        return Rental.builder()
+                .title(dto.getTitle())
+                .author(account)
+                .isNegotiable(dto.isNegotiable())
+                .description(dto.getDescription())
+                .location(location)
+                .price(dto.getPrice())
+                .deposit(dto.getDeposit())
+                .rooms(dto.getRooms())
+                .floor(dto.getFloor())
+                .size(dto.getSize())
+                .buildYear(dto.getBuildYear())
+                .rentDate(dto.getRentDate())
+//                .featureTags(dto.getFeatures())
+//                .photoUrls(dto.getPhotoList())
                 .build();
     }
 }

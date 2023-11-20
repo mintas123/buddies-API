@@ -35,7 +35,7 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID rentalId;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "author_id")
     private AccountEntity authorEntity;
 
@@ -52,7 +52,7 @@ public class RentalEntity implements RentalRepository.IRentalEntity {
     //    @Size(max = 3000)
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "location_id")
     private LocationEntity locationEntity;
 

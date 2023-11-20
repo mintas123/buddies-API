@@ -59,12 +59,14 @@ public class RentalRepositoryImpl implements RentalRepository {
 
     @Override
     public Rental save(Rental rental) {
-        jpaRepository.findById(rental.getRentalId())
-                .ifPresent(rentalEntity -> {
-                    throw new IllegalStateException("Cannot save, rental with " + rental.getRentalId() + " already exists");
-                });
-        jpaRepository.save(RentalEntity.fromDomain(rental));
-        return rental;
+        if (rental.getRentalId() != null) {
+            jpaRepository.findById(rental.getRentalId())
+                    .ifPresent(rentalEntity -> {
+                        throw new IllegalStateException("Cannot save, rental with " + rental.getRentalId() + " already exists");
+                    });
+        }
+        var savedEntity = jpaRepository.save(RentalEntity.fromDomain(rental));
+        return Rental.fromDb(savedEntity);
     }
 
     @Override

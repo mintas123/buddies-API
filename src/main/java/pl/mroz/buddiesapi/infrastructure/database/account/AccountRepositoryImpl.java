@@ -21,6 +21,11 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
+    public Account getById(UUID accountUUID) {
+        return Account.fromDb(jpaRepository.getByAccountId(accountUUID));
+    }
+
+    @Override
     public Account save(Account account) {
         if (account.getAccountId() != null) {
             jpaRepository.findById(account.getAccountId())
@@ -29,10 +34,12 @@ public class AccountRepositoryImpl implements AccountRepository {
                                 + account.getAccountId() + " already exists");
                     });
         }
-        jpaRepository.save(AccountEntity.fromDomain(account));
-        return account;
+        var savedEntity = jpaRepository.save(AccountEntity.fromDomain(account));
+        return Account.fromDb(savedEntity);
     }
 
     interface AccountJpaRepository extends JpaRepository<AccountEntity, UUID> {
+
+        AccountEntity getByAccountId(UUID accountId);
     }
 }

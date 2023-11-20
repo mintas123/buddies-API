@@ -25,6 +25,9 @@ public class Account {
     // todo rethink domain scopes and db schema
 
     public static Account fromDb(AccountRepository.IAccountEntity entity) {
+        if (entity == null) {
+            return null;
+        }
         return Account.builder()
                 .accountId(entity.getAccountId())
                 .email(entity.getEmail())

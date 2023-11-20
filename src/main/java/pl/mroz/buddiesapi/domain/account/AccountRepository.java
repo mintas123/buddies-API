@@ -11,6 +11,8 @@ public interface AccountRepository {
 
     Account save(Account account);
 
+    Account getById(UUID accountUUID);
+
     interface IAccountEntity {
         UUID getAccountId();
 

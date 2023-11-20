@@ -20,7 +20,7 @@ public class AccountDomainServiceImpl implements AccountDomainService {
 
     @Override
     public Account getAccount(UUID accountId) {
-        throw new NotImplementedException();
+        return repository.getById(accountId);
     }
 
     @Override

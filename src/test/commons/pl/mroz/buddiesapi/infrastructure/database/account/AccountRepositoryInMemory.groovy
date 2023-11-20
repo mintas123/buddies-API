@@ -24,4 +24,11 @@ class AccountRepositoryInMemory implements AccountRepository {
         accounts += account
         return account
     }
+
+    @Override
+    Account getById(UUID accountUUID) {
+        return accounts.find {
+            it.accountId == accountUUID
+        }
+    }
 }
