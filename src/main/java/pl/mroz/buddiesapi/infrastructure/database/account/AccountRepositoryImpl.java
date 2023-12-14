@@ -27,15 +27,13 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account save(Account account) {
-        if (account.getAccountId() != null) {
-            jpaRepository.findById(account.getAccountId())
-                    .ifPresent(accountEntity -> {
-                        throw new IllegalStateException("Cannot save, account with "
-                                + account.getAccountId() + " already exists");
-                    });
-        }
         var savedEntity = jpaRepository.save(AccountEntity.fromDomain(account));
         return Account.fromDb(savedEntity);
+    }
+
+    @Override
+    public void delete(Account account) {
+        jpaRepository.delete(AccountEntity.fromDomain(account));
     }
 
     interface AccountJpaRepository extends JpaRepository<AccountEntity, UUID> {

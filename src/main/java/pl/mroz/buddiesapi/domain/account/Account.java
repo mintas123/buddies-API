@@ -22,8 +22,6 @@ public class Account {
     private String name;
     private String lastName;
     private Location location;
-    // todo rethink domain scopes and db schema
-
     public static Account fromDb(AccountRepository.IAccountEntity entity) {
         if (entity == null) {
             return null;

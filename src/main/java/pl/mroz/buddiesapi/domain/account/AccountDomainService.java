@@ -11,7 +11,7 @@ public interface AccountDomainService {
 
     Account createAccount(Account account);
 
-    void updateAccount(Account account);
+    Account updateAccount(UUID uuid, Account account);
 
     void deleteAccount(Account account);
 }
