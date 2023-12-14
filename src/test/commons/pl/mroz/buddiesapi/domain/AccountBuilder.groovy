@@ -15,6 +15,16 @@ class AccountBuilder implements RandomBuilder {
     private String lastName = faker.name().lastName()
     private Location location = randomLocation
 
+    AccountBuilder withAccountId(UUID uuid) {
+        accountId = uuid
+        return this
+    }
+
+    AccountBuilder withEmail(String email) {
+        this.email = email
+        return this
+    }
+
     Account build() {
         return new Account(accountId, email, hashedPassword, name, lastName, location)
     }
