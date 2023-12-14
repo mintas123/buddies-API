@@ -23,37 +23,17 @@ class RentalDomainServiceImplUT extends Specification implements RandomBuilder {
         persisted.title == rental.title
     }
 
-    def 'createRental should throw exception when rental with same UUID already exists'() {
-        given:
-        def rental = new RentalBuilder().build()
-        when:
-        service.createRental(rental)
-        and:
-        service.createRental(rental)
-        then:
-        thrown(IllegalStateException)
-    }
-
     def 'updateRental should persist new data about Rental'() {
         given:
         def rental = new RentalBuilder().withPrice(100).build()
         service.createRental(rental)
         when:
         rental.price = 1500
-        service.updateRental(rental)
+        service.updateRental(rental.getRentalId(), rental)
         then:
         def persisted = repository.getRentalById(rental.getRentalId())
         persisted.price == 1500
         persisted.price != 100
-    }
-
-    def 'updateRental should throw exception when rental doesnt exists'() {
-        given:
-        def rental = new RentalBuilder().build()
-        when:
-        service.updateRental(rental)
-        then:
-        thrown(IllegalArgumentException)
     }
 
     def 'deleteRental should persist removing data about Rental'() {

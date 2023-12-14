@@ -20,7 +20,7 @@ public interface RentalDomainService {
 
     Rental createRental(Rental rental);
 
-    Rental updateRental(Rental rental);
+    Rental updateRental(UUID uuid, Rental rental);
 
     void deleteRental(Rental rental);
 }

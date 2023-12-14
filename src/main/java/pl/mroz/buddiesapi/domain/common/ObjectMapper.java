@@ -7,6 +7,15 @@ import java.lang.reflect.Field;
 @Slf4j
 public class ObjectMapper {
 
+    /**
+     * Apply data from one object into another.
+     *
+     * @param updating Object from which the data is taken
+     * @param updated Object to which the data is applied
+     * @return Old object updated with new data
+     * @param <T> Class of new object (Most commonly should be same as old)
+     * @param <R> Class of old object (Most commonly should be same as new)
+     */
     public static <T, R> R mapInto(T updating, R updated) {
         for (Field updatingField : updating.getClass().getDeclaredFields()) {
             try {

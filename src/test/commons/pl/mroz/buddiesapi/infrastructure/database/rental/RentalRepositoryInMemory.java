@@ -4,10 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import pl.mroz.buddiesapi.domain.common.ObjectMapper;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
-import pl.mroz.buddiesapi.infrastructure.database.account.AccountEntity;
-import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.util.HashSet;
 import java.util.List;
@@ -57,36 +56,13 @@ public class RentalRepositoryInMemory implements RentalRepository {
     @Override
     public Rental save(Rental rental) {
         if (rentals.contains(rental)) {
-            throw new IllegalStateException("Cannot save, rental with " + rental.getRentalId() + " already exists");
+            Rental rentalById = getRentalById(rental.getRentalId());
+            rentals.remove(rentalById);
+            Rental updated = ObjectMapper.mapInto(rental, rentalById);
+            rentals.add(updated);
+            return updated;
         }
         rentals.add(rental);
-        return rental;
-    }
-
-    @Override
-    public Rental update(Rental rental) {
-        var rentalById = getRentalById(rental.getRentalId());
-        var copyEntity = RentalEntity.builder()
-                .rentalId(rentalById.getRentalId())
-                .authorEntity(AccountEntity.fromDomain(rental.getAuthor()))
-                .title(rental.getTitle())
-                .isNegotiable(rental.isNegotiable())
-                .description(rental.getDescription())
-                .locationEntity(LocationEntity.fromDomain(rental.getLocation()))
-                .price(rental.getPrice())
-                .deposit(rental.getDeposit())
-                .rooms(rental.getRooms())
-                .floor(rental.getFloor())
-                .size(rental.getSize())
-                .buildYear(rental.getBuildYear())
-                .rentDate(rental.getRentDate())
-//                .featureTags(rental.getFeatureTags())
-//                .photoUrls(rental.getPhotoUrls())
-                .build();
-
-        rentals.remove(rentalById);
-        rentals.add(Rental.fromDb(copyEntity));
-
         return rental;
     }
 

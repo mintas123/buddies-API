@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import pl.mroz.buddiesapi.domain.account.AccountDomainService;
 import pl.mroz.buddiesapi.domain.rental.RentalDomainService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -54,5 +56,24 @@ public class RentalController {
         var created = service.createRental(RentalDto.toDomain(rentalDTO, author));
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(RentalDto.from(created));
+    }
+
+    @Operation(summary = "Update a rental", method = "PUT")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Rental updated"),
+            @ApiResponse(responseCode = "403", description = "Rental not updated"),
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
+    })
+    @PostMapping({"/{uuid}"})
+    public ResponseEntity<RentalDto> udpateRental(@PathVariable UUID uuid,
+                                                  @RequestBody RentalDto rentalDTO) {
+        var author = accountDomainService.getAccount(rentalDTO.getAuthorId());
+        //todo get author data from JWT token not DTO
+        if (author == null) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        var updated = service.updateRental(uuid, RentalDto.toDomain(rentalDTO, author));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(RentalDto.from(updated));
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pl.mroz.buddiesapi.domain.rental.Rental;
 import pl.mroz.buddiesapi.domain.rental.RentalRepository;
-import pl.mroz.buddiesapi.infrastructure.database.location.LocationEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -59,36 +58,8 @@ public class RentalRepositoryImpl implements RentalRepository {
 
     @Override
     public Rental save(Rental rental) {
-        if (rental.getRentalId() != null) {
-            jpaRepository.findById(rental.getRentalId())
-                    .ifPresent(rentalEntity -> {
-                        throw new IllegalStateException("Cannot save, rental with " + rental.getRentalId() + " already exists");
-                    });
-        }
         var savedEntity = jpaRepository.save(RentalEntity.fromDomain(rental));
         return Rental.fromDb(savedEntity);
-    }
-
-    @Override
-    public Rental update(Rental rental) {
-        var rentalEntity = jpaRepository.getReferenceById(rental.getRentalId());
-        rentalEntity.setTitle(rental.getTitle());
-        rentalEntity.setNegotiable(rental.isNegotiable());
-        rentalEntity.setDescription(rental.getDescription());
-        rentalEntity.setLocationEntity(LocationEntity.fromDomain(rental.getLocation()));
-        rentalEntity.setPrice(rental.getPrice());
-        rentalEntity.setDeposit(rental.getDeposit());
-        rentalEntity.setRooms(rental.getRooms());
-        rentalEntity.setFloor(rental.getFloor());
-        rentalEntity.setSize(rental.getSize());
-        rentalEntity.setBuildYear(rental.getBuildYear());
-        rentalEntity.setRentDate(rental.getRentDate());
-//        rentalEntity.setFeatureTags(rental.getFeatureTags());
-//        rentalEntity.setPhotoUrls(rental.getPhotoUrls());
-
-        jpaRepository.save(rentalEntity);
-
-        return rental;
     }
 
     @Override

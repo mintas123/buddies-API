@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import pl.mroz.buddiesapi.domain.common.ObjectMapper;
 import pl.mroz.buddiesapi.infrastructure.database.rental.RentalEntity;
 
 import java.util.List;
@@ -49,8 +50,9 @@ class RentalDomainServiceImpl implements RentalDomainService {
     }
 
     @Override
-    public Rental updateRental(Rental rental) {
-        return repository.update(rental);
+    public Rental updateRental(UUID uuid, Rental rental) {
+        var oldRentalData = repository.getRentalById(uuid);
+        return repository.save(ObjectMapper.mapInto(rental, oldRentalData));
     }
 
     @Override

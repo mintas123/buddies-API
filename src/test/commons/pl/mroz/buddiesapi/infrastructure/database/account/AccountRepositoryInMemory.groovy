@@ -26,6 +26,11 @@ class AccountRepositoryInMemory implements AccountRepository {
     }
 
     @Override
+    void delete(Account account) {
+        accounts.remove(account)
+    }
+
+    @Override
     Account getById(UUID accountUUID) {
         return accounts.find {
             it.accountId == accountUUID

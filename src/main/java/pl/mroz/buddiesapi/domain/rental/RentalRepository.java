@@ -27,8 +27,6 @@ public interface RentalRepository {
 
     Rental save(Rental rental);
 
-    Rental update(Rental rental);
-
     void delete(Rental rental);
 
     interface IRentalEntity {
