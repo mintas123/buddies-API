@@ -45,6 +45,23 @@ public class AccountController {
                 .toList();
     }
 
+    @Operation(summary = "Get an account", method = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Account received"),
+            @ApiResponse(responseCode = "403", description = "Account not received"),
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
+    })
+    @GetMapping({"/{uuid}"})
+    public ResponseEntity<AccountDto> updateAccount(@PathVariable UUID uuid) {
+        if (service.getAccount(uuid) == null) {
+            //todo return meaningful errors
+            log.info(CANNOT_ACCESS_MESSAGE, uuid);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(AccountDto.from(service.getAccount(uuid)));
+    }
+
     @Operation(summary = "Create an account", method = "POST")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Account created"),
