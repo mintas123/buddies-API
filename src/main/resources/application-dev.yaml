@@ -1,7 +1,10 @@
 #Development only
 spring:
+  config:
+#    For local environment create a file with variables based on template-env.yaml
+    import: dev-env.yaml
+
   datasource:
-    password: compose-postgres
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
   jpa:
