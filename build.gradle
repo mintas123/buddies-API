@@ -47,7 +47,7 @@ dependencies {
 	developmentOnly "org.springframework.boot:spring-boot-devtools:$springBootVersion"
 
 	//Auth0
-	implementation 'com.okta.spring:okta-spring-boot-starter:3.0.5'
+	implementation 'com.okta.spring:okta-spring-boot-starter:3.0.7'
 
 	implementation 'org.springframework.security:spring-security-core:6.1.5'
 
