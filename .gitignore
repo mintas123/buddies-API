@@ -210,9 +210,6 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
-### ENV SECRETS
-src/main/resources/dev-env.yaml
-
 # Eclipse Gradle plugin generated files
 # Eclipse Core
 # JDT-specific (Eclipse Java Development Tools)
