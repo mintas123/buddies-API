@@ -1,23 +1,28 @@
 buildscript {
-	ext{
-		springBootVersion =  '3.3.2'
-	}
+    ext {
+        springBootVersion = '3.3.2'
+    }
 }
 plugins {
-	id 'java'
-	id 'groovy'
-	id 'checkstyle'
-	id 'jacoco'
-	//SPRING
-	id 'org.springframework.boot' version '3.3.2'
-	id 'io.spring.dependency-management' version '1.1.6'
-	//DOCKER
-	id 'com.palantir.docker' version '0.36.0'
-	id 'com.palantir.docker-run' version '0.36.0'
-	id 'com.palantir.docker-compose' version '0.36.0'
-	//SWAGGER
-	id "com.github.johnrengelman.processes" version "0.5.0"
-	id "org.springdoc.openapi-gradle-plugin" version "1.9.0"
+//    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '2.0.20'
+    id "org.jetbrains.kotlin.plugin.jpa" version "2.0.20"
+    id "org.jetbrains.kotlin.plugin.spring" version "2.0.20"
+    id 'groovy'
+    //todo change style check to detekt
+//    id 'checkstyle'
+//    id 'jacoco'
+    //SPRING
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
+
+    //DOCKER
+    id 'com.palantir.docker' version '0.36.0'
+    id 'com.palantir.docker-run' version '0.36.0'
+    id 'com.palantir.docker-compose' version '0.36.0'
+    //SWAGGER
+    id "com.github.johnrengelman.processes" version "0.5.0"
+    id "org.springdoc.openapi-gradle-plugin" version "1.9.0"
 }
 
 group = 'pl.mroz'
@@ -25,13 +30,13 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '21'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 apply from: 'gradle/docker.gradle'
@@ -39,29 +44,31 @@ apply from: 'gradle/test.gradle'
 
 
 dependencies {
-	implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
-	implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
-	implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-	implementation "org.springframework.boot:spring-boot-starter-websocket:$springBootVersion"
-	testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
-	developmentOnly "org.springframework.boot:spring-boot-devtools:$springBootVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:2.0.20"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-websocket:$springBootVersion"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 
-	implementation 'org.springframework.security:spring-security-core:6.3.2'
+    implementation 'org.springframework.security:spring-security-core:6.3.2'
 
-	runtimeOnly 'org.postgresql:postgresql:42.7.3'
-	implementation 'org.postgresql:postgresql:42.7.3'
+    runtimeOnly 'org.postgresql:postgresql:42.7.3'
+    implementation 'org.postgresql:postgresql:42.7.3'
 
-	compileOnly 'org.projectlombok:lombok:1.18.34'
-	annotationProcessor 'org.projectlombok:lombok:1.18.34'
+//    compileOnly 'org.projectlombok:lombok:1.18.34'
+//    annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
-	// Swagger
-	implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
+    // Swagger
+    implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
 
-	// JavaFaker to generate realistic looking testing data
-	implementation 'net.datafaker:datafaker:2.3.1'
+    implementation 'io.github.microutils:kotlin-logging-jvm:3.0.5'
+
+    // JavaFaker to generate realistic looking testing data
+    testImplementation 'net.datafaker:datafaker:2.3.1'
 }
 
 openApi {
-	outputDir.set(file("$buildDir/OpenAPI"))
-	outputFileName.set("buddiesAPI.json")
+    outputDir.set(file("$buildDir/OpenAPI"))
+    outputFileName.set("buddiesAPI.json")
 }
