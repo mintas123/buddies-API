@@ -211,10 +211,11 @@ gradle-app.setting
 **/build/
 
 ### ENV SECRETS
-src/main/resources/dev-env.yaml
+src/main/resources/*-env.yaml
 
 # Eclipse Gradle plugin generated files
 # Eclipse Core
 # JDT-specific (Eclipse Java Development Tools)
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,git,java,groovy,gradle
+/.kotlin/

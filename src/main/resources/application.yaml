@@ -1,13 +1,11 @@
-spring:
-  config:
-      #    For local environment create a file with variables specified in main application.yaml
-    import: template-env.yaml
 
+spring:
   datasource:
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
     url: ToBeReplaced
+    password: ToBeReplaced
     username: ToBeReplaced
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
