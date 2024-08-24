@@ -38,7 +38,7 @@ class AccountController(
     )
     @Operation(summary = "Get list of all accounts", method = "GET")
     fun getAllAccounts(): List<AccountDto> {
-        return service.allAccounts
+        return service.getAllAccounts()
             .stream()
             .map { domain: Account ->
                 AccountDto.from(

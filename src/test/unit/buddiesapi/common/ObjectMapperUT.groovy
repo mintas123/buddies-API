@@ -1,10 +1,14 @@
-package pl.mroz.buddiesapi.common
+package buddiesapi.common
 
-import pl.mroz.buddiesapi.domain.AccountBuilder
-import pl.mroz.buddiesapi.domain.common.ObjectMapper
+import buddiesapi.domain.AccountBuilder
+import buddiesapi.domain.common.ObjectMapper
 import spock.lang.Specification
+import spock.lang.Subject
 
 class ObjectMapperUT extends Specification {
+
+    @Subject
+    private final ObjectMapper objectMapper = ObjectMapper.INSTANCE
 
     def 'should map Account objects'() {
         given:
@@ -18,7 +22,7 @@ class ObjectMapperUT extends Specification {
                     .withEmail('test2@mail.com')
                     .build()
         when:
-            def result = ObjectMapper.mapInto(newAcc, old)
+            def result = objectMapper.mapInto(newAcc, old)
         then:
             result.accountId == uuid
             result.email == 'test2@mail.com'

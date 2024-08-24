@@ -1,12 +1,12 @@
-package pl.mroz.buddiesapi.infrastructure.database.rental;
+package buddiesapi.infrastructure.database.rental;
 
+import buddiesapi.domain.common.ObjectMapper;
+import buddiesapi.domain.rental.Rental;
+import buddiesapi.domain.rental.RentalRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import pl.mroz.buddiesapi.domain.common.ObjectMapper;
-import pl.mroz.buddiesapi.domain.rental.Rental;
-import pl.mroz.buddiesapi.domain.rental.RentalRepository;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +16,7 @@ import java.util.UUID;
 public class RentalRepositoryInMemory implements RentalRepository {
 
     private final Set<Rental> rentals = new HashSet<>();
+    private final ObjectMapper mapper = ObjectMapper.INSTANCE;
 
     @Override
     public List<Rental> getAllRentals() {
@@ -58,7 +59,7 @@ public class RentalRepositoryInMemory implements RentalRepository {
         if (rentals.contains(rental)) {
             Rental rentalById = getRentalById(rental.getRentalId());
             rentals.remove(rentalById);
-            Rental updated = ObjectMapper.mapInto(rental, rentalById);
+            Rental updated = mapper.mapInto(rental, rentalById);
             rentals.add(updated);
             return updated;
         }

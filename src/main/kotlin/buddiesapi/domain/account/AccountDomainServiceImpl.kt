@@ -6,7 +6,7 @@ import mu.KLogging
 
 class AccountDomainServiceImpl(val repository: AccountRepository) : AccountDomainService {
 
-    override val allAccounts: List<Account> = repository.findAll()
+    override fun getAllAccounts(): List<Account> = repository.findAll()
 
     override fun getAccount(accountId: UUID): Account? =
         repository.getById(accountId)

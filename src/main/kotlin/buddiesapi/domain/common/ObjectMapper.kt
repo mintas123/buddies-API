@@ -16,6 +16,9 @@ object ObjectMapper : KLogging() {
     fun <T, R> mapInto(updating: T, updated: R): R {
         for (updatingField in updating!!::class.java.declaredFields) {
             try {
+                if (updatingField.name.equals("Companion")) {
+                    continue
+                }
                 val updatedField: Field = updated!!::class.java.getDeclaredField(updatingField.name)
                 updatingField.isAccessible = true
                 updatedField.isAccessible = true

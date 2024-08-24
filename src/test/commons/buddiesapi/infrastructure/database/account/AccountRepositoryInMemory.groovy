@@ -1,7 +1,8 @@
-package pl.mroz.buddiesapi.infrastructure.database.account
+package buddiesapi.infrastructure.database.account
 
-import pl.mroz.buddiesapi.domain.account.Account
-import pl.mroz.buddiesapi.domain.account.AccountRepository
+import buddiesapi.domain.account.Account
+import buddiesapi.domain.account.AccountRepository
+
 
 class AccountRepositoryInMemory implements AccountRepository {
 

@@ -1,13 +1,16 @@
-package pl.mroz.buddiesapi.domain.generation
+package buddiesapi.domain.generation
 
-import net.datafaker.Faker
-import org.apache.commons.lang3.RandomUtils
-import pl.mroz.buddiesapi.domain.common.Location
-
-import java.time.*
+import buddiesapi.domain.common.Location
+import java.time.Duration
+import java.time.Instant
+import java.time.LocalDate
+import java.time.Month
+import java.time.ZoneOffset
 import java.time.temporal.ChronoUnit
 import java.util.function.IntConsumer
 import java.util.stream.IntStream
+import net.datafaker.Faker
+import org.apache.commons.lang3.RandomUtils
 
 trait RandomBuilder {
 

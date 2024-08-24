@@ -4,7 +4,7 @@ import java.util.UUID
 
 
 interface AccountDomainService {
-    val allAccounts: List<Account>
+    fun getAllAccounts(): List<Account>
 
     fun getAccount(accountId: UUID): Account?
 

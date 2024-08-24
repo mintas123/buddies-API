@@ -1,20 +1,21 @@
-package pl.mroz.buddiesapi.domain
+package buddiesapi.domain
 
-import com.github.javafaker.Faker
-import pl.mroz.buddiesapi.domain.common.Location
-import pl.mroz.buddiesapi.domain.generation.RandomBuilder
-import pl.mroz.buddiesapi.domain.rental.Rental
-
+import buddiesapi.domain.common.Location
+import buddiesapi.domain.generation.RandomBuilder
+import buddiesapi.domain.rental.Rental
+import groovy.transform.builder.Builder
 import java.time.Instant
 import java.time.LocalDate
 import java.util.stream.IntStream
+import net.datafaker.Faker
 
+@Builder(prefix = "with", builderStrategy = groovy.transform.builder.SimpleStrategy)
 class RentalBuilder implements RandomBuilder {
 
     private final static Faker faker = new Faker(Locale.ENGLISH)
 
     //default values
-    private final UUID rentalId = randomUUID
+    UUID rentalId = randomUUID
     private String title = faker.lorem().sentence(5, 5)
     private boolean isNegotiable = randomBoolean
     private String description = faker.lordOfTheRings().location().take(getRandomInt(500, 3000))
@@ -40,24 +41,9 @@ class RentalBuilder implements RandomBuilder {
         return set
     }
 
-    RentalBuilder withIsNegotiable(boolean isNegotiable) {
-        this.isNegotiable = isNegotiable
-        return this
-    }
-
     RentalBuilder withPrice(int price) {
         this.price = price
         this.pricePerM = this.price / this.size
-        return this
-    }
-
-    RentalBuilder withRentDate(LocalDate date) {
-        this.rentDate = date
-        return this
-    }
-
-    RentalBuilder withFeatureSet(Set<String> features) {
-        this.featureTags = features
         return this
     }
 

@@ -1,10 +1,13 @@
-package pl.mroz.buddiesapi.domain.account
+package buddiesapi.domain.account
 
-import pl.mroz.buddiesapi.infrastructure.database.account.AccountRepositoryInMemory
+import buddiesapi.domain.generation.RandomBuilder
+import buddiesapi.infrastructure.database.account.AccountRepositoryInMemory
 import spock.lang.Specification
 import spock.lang.Subject
 
-class AccountDomainServiceImplUT extends Specification {
+class AccountDomainServiceImplUT extends Specification implements RandomBuilder {
+
+    private final PasswordHasher hasher = PasswordHasher.INSTANCE
 
     def repository = new AccountRepositoryInMemory()
 
@@ -14,8 +17,8 @@ class AccountDomainServiceImplUT extends Specification {
     def 'should return list of all accounts'() {
         given:
             def accounts = [
-                    new Account(UUID.randomUUID(), 'test@email.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Deer', null),
-                    new Account(UUID.randomUUID(), 'mail@gmail.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Kowalski', null),
+                    new Account(UUID.randomUUID(), 'test@email.com', hasher.hashPassword(hasher.generatePassword()), 'John', 'Deer', randomLocation),
+                    new Account(UUID.randomUUID(), 'mail@gmail.com', hasher.hashPassword(hasher.generatePassword()), 'John', 'Kowalski', randomLocation),
             ]
             repository.withAccounts(accounts)
         when:
@@ -28,7 +31,7 @@ class AccountDomainServiceImplUT extends Specification {
 
     def 'should save an account'() {
         given:
-            def toStore = new Account(UUID.randomUUID(), 'test@email.com', PasswordHasher.hashPassword(PasswordHasher.generatePassword()), 'John', 'Deer', null)
+            def toStore = new Account(UUID.randomUUID(), 'test@email.com', hasher.hashPassword(hasher.generatePassword()), 'John', 'Deer', randomLocation)
         when:
             provider.createAccount(toStore)
         then:
