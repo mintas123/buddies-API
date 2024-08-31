@@ -11,8 +11,7 @@ import org.springframework.data.jpa.domain.Specification
 
 class RentalDomainServiceImpl(val repository: RentalRepository) : RentalDomainService {
 
-    override val allRentals: List<Rental> = repository.getAllRentals()
-
+    override fun getAllRentals(): List<Rental> = repository.getAllRentals()
 
     override fun getByCriteria(rentalCriteria: RentalRepository.IRentalCriteria, pageable: Pageable): Page<Rental> {
         val spec = Specification.where<RentalEntity>(null)
@@ -21,7 +20,6 @@ class RentalDomainServiceImpl(val repository: RentalRepository) : RentalDomainSe
     }
 
     override fun getRentalsFromUser(accountId: UUID): List<Rental> = repository.getAllRentalsFromUser(accountId)
-
 
     override fun getRental(rentalId: UUID): Rental {
         repository.getRentalById(rentalId)?.let { return it }

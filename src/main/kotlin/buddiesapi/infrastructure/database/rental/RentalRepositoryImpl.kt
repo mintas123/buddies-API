@@ -4,6 +4,7 @@ import buddiesapi.domain.rental.Rental
 import buddiesapi.domain.rental.RentalRepository
 import buddiesapi.infrastructure.database.rental.RentalEntity.Companion.fromDomain
 import java.util.UUID
+import mu.KLogging
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.domain.Specification
@@ -43,6 +44,7 @@ class RentalRepositoryImpl(
     override val topTags: List<String> = emptyList() //todo
 
     override fun save(rental: Rental): Rental {
+        logger.info { "Saving ${rental.rentalId}, with userID: ${rental.author.accountId}" }
         val savedEntity = jpaRepository.save(fromDomain(rental))
         return Rental.fromDb(savedEntity)
     }
@@ -50,6 +52,8 @@ class RentalRepositoryImpl(
     override fun delete(rental: Rental) =
         jpaRepository.delete(fromDomain(rental))
 
+
+    companion object : KLogging()
 
     interface RentalJpaRepository : JpaRepository<RentalEntity?, UUID>,
         JpaSpecificationExecutor<RentalEntity> {

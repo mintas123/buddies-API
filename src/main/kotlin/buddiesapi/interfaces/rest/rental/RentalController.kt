@@ -26,8 +26,8 @@ class RentalController(
     private val accountDomainService: AccountDomainService
 ) {
 
-    @get:GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
-    @get:ApiResponses(
+    @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
+    @ApiResponses(
         value = [ApiResponse(
             responseCode = "200",
             description = "List fetched"
@@ -36,9 +36,9 @@ class RentalController(
             description = "Internal server error"
         )]
     )
-    @get:Operation(summary = "Get list of all rentals", method = "GET")
-    val allRentals: List<RentalDto>
-        get() = service.allRentals
+    @Operation(summary = "Get list of all rentals", method = "GET")
+    fun getRentals(): List<RentalDto> {
+        return service.getAllRentals()
             .stream()
             .map { domain: Rental ->
                 RentalDto.from(
@@ -46,6 +46,7 @@ class RentalController(
                 )
             }
             .toList()
+    }
 
     @Operation(summary = "Create a rental", method = "POST")
     @ApiResponses(

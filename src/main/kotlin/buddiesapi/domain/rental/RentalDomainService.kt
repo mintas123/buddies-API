@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 
 interface RentalDomainService {
-    val allRentals: List<Rental>
+    fun getAllRentals(): List<Rental>
 
     fun getByCriteria(rentalCriteria: RentalRepository.IRentalCriteria, pageable: Pageable): Page<Rental>
 

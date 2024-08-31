@@ -4,7 +4,7 @@ import buddiesapi.infrastructure.database.location.LocationEntity
 import java.util.UUID
 
 
-class Location(
+data class Location(
     val locationId: UUID?,
     val readableText: String,
     val longitude: Double,
