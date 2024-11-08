@@ -14,7 +14,7 @@ sourceSets {
 }
 
 dependencies {
-    implementation 'org.apache.groovy:groovy-all:4.0.22'
+    implementation 'org.apache.groovy:groovy-all:4.0.24'
     testImplementation platform("org.spockframework:spock-bom:2.4-M1-groovy-4.0")
     testImplementation "org.spockframework:spock-core"
 }
